@@ -8,7 +8,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--cfg',
                         dest='cfg_file',
                         type=str,
-                        required=True,
+                        default='configs/example_custom.yaml',
                         help='The configuration file path.')
     parser.add_argument('--repeat',
                         type=int,
@@ -16,6 +16,7 @@ def parse_args() -> argparse.Namespace:
                         help='The number of repeated jobs.')
     parser.add_argument('--mark_done',
                         action='store_true',
+                        default=[],
                         help='Mark yaml as done after a job has finished.')
     parser.add_argument('opts',
                         default=None,

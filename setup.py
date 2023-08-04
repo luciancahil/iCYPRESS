@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="iCypress",
-    version="0.2",
+    version="0.3",
     author="royhe",
     author_email="royhe62@yahoo.ca",
     description="iCYPRESS: identifying CYtokine PREdictors of diSeaSe. A library that analyzes cytokines using Graph Neural Networks",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/luciancahil/iCYPRESS",
-    download_url = 'https://github.com/luciancahil/iCYPRESS/archive/refs/tags/v_01.tar.gz',    # I explain this later on
+    download_url = 'https://github.com/luciancahil/iCYPRESS/archive/refs/tags/v_01.tar.gz', 
     packages=setuptools.find_packages(),
     install_requires=[
         'deepsnap',
