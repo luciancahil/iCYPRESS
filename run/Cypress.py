@@ -1,6 +1,6 @@
 
 class Cypress:
-    def __init__(self, name, age):
+    def __init__(self):
         print("hi")
     
     def stuff(self):
