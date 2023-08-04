@@ -16,16 +16,44 @@ from graphgym.utils.agg_runs import agg_runs
 from graphgym.utils.comp_budget import params_count
 from graphgym.utils.device import auto_select_device
 from graphgym.models.gnn import GNNStackStage
-from CytokinesDataSet import CytokinesDataSet
-from Visualization import Visualize
+from iCYPRESS.CytokinesDataSet import CytokinesDataSet
+from iCYPRESS.Visualization import Visualize
 from graphgym.models.layer import GeneralMultiLayer, Linear, GeneralConv
 from graphgym.models.gnn import GNNStackStage
 
 class Cypress:
     def __init__(self):
-        pass
+        self.makeConfigFile()
+
+    def makeConfigFile(self):
+        if (not os.path.exists(os.path.abspath("configs"))):
+            os.makedirs(os.path.abspath("configs"))
+        
+        # get current config file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        curr_cfg_file = os.path.join(current_dir, "configs", "example_custom.yaml")
+        self.write_lines_to_file(curr_cfg_file, "configs\\example_custom.yaml")
     
-    def train():
+    def write_lines_to_file(self, input_file, output_file_name):
+        try:
+            with open(input_file, 'r') as infile:
+                # Read all lines from the input file
+                lines = infile.readlines()
+
+            # Remove any leading/trailing whitespaces from the output file name
+            output_file_name = output_file_name.strip()
+
+            # Write the lines to the output file with the provided name (overwriting if it exists)
+            with open(output_file_name, 'w') as outfile:
+                for line in lines:
+                    outfile.write(line)
+
+        except FileNotFoundError:
+            print(f"Error: Input file '{input_file}' not found.")
+        except Exception as e:
+            print(f"Error: An unexpected error occurred - {e}")
+
+    def train(self):
         # Load cmd line args
         args = parse_args()
         # Load config file
