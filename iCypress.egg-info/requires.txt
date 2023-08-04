@@ -1,0 +1,15 @@
+deepsnap
+matplotlib
+networkx
+numpy
+ogb
+pandas
+PyYAML
+scikit_learn
+seaborn
+setuptools
+tensorboardX
+torch
+torch_geometric
+torch_scatter
+yacs

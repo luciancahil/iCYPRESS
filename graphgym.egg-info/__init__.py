@@ -1,1 +1,1 @@
-from run.Cypress import Cypress
+from iCYPRESS.Cypress import Cypress
