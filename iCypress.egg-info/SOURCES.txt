@@ -83,6 +83,7 @@ iCYPRESS/configs_gen.py
 iCYPRESS/main.py
 iCYPRESS/main_pyg.py
 iCYPRESS/configs/__init__.py
+iCYPRESS/configs/example_custom.yaml
 iCYPRESS/configs/IDGNN/__init__.py
 iCYPRESS/configs/design/__init__.py
 iCYPRESS/configs/example_custom_grid_example_custom/__init__.py
