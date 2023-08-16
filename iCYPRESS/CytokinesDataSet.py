@@ -57,7 +57,11 @@ class CytokinesDataSet(InMemoryDataset):
         pass
 
     def process(self):
-        name = self.graphName[:self.graphName.index("_graph.csv")]
+        if '_graph.csv' in self.graphName:
+            name = self.graphName[:self.graphName.index("_graph.csv")]
+        else:
+            name = self.graphName
+
         self.new_dir = "datasets/" + name + "/processed/"# "datasets\\" + name + "\\processed"   # new processed dir
         train_data = Data()
         train_slices = dict()

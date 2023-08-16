@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="iCypress",
-    version="0.5",
+    version="0.7",
     author="royhe",
     package_data={'iCYPRESS': ['configs/example_custom.yaml']},
     author_email="royhe62@yahoo.ca",
