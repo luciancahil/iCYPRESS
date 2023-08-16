@@ -1,14 +1,14 @@
 import argparse
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(name = "example_custom.yaml" ) -> argparse.Namespace:
     r"""Parses the command line arguments."""
     parser = argparse.ArgumentParser(description='GraphGym')
 
     parser.add_argument('--cfg',
                         dest='cfg_file',
                         type=str,
-                        default='configs/example_custom.yaml',
+                        default='configs/' + name,
                         help='The configuration file path.')
     parser.add_argument('--repeat',
                         type=int,

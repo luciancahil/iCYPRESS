@@ -2,10 +2,16 @@ import torch
 from torch_geometric.data import Dataset, Data
 import numpy as np 
 import os
+from torch_geometric.data import (
+    Data,
+    InMemoryDataset,
+    download_url,
+    extract_zip,
+)
 
 CLASS_NAME = "DISEASE"
 
-class CytokinesDataSet(Dataset):
+class CytokinesDataSet(InMemoryDataset):
     def __init__(self, root, filename, graphName, test=False, transform=None, pre_transform=None, patients = None, adjacency = None, nodeNames = None, divisions = None):
         """
         root = Where the dataset should be stored. This folder is split
@@ -51,8 +57,7 @@ class CytokinesDataSet(Dataset):
         pass
 
     def process(self):
-        name = self.graphName[:-10]
-        print(self.graphName)
+        name = self.graphName[:self.graphName.index("_graph.csv")]
         self.new_dir = "datasets/" + name + "/processed/"# "datasets\\" + name + "\\processed"   # new processed dir
         train_data = Data()
         train_slices = dict()
@@ -242,17 +247,6 @@ class CytokinesDataSet(Dataset):
 
     def len(self):
         return len(self.patients)
-
-    def get(self, idx):
-        """ - Equivalent to __getitem__ in pytorch
-            - Is not needed for PyG's InMemoryDataset
-        """
-        name = self.graphName[:-10]
-
-        if self.test:
-            data = torch.load(os.path.join(self.new_dir, 
-                                 f'{name}_data_test_{idx}.pt'))
-        else:
-            data = torch.load(os.path.join(self.new_dir, 
-                                 f'{name}_data_{idx}.pt'))   
-        return data
+    
+    def get(self, idx: int):
+        pass

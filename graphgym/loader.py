@@ -280,6 +280,51 @@ def create_dataset():
 
     return datasets
 
+def create_local_dataset(graphs):
+    time1 = time.time()
+
+    # Filter graphs
+    time2 = time.time()
+    min_node = filter_graphs()
+    
+    # Create whole dataset
+    dataset = GraphDataset(
+        graphs,
+        task=cfg.dataset.task,
+        edge_train_mode=cfg.dataset.edge_train_mode,
+        edge_message_ratio=cfg.dataset.edge_message_ratio,
+        edge_negative_sampling_ratio=cfg.dataset.edge_negative_sampling_ratio,
+        resample_disjoint=cfg.dataset.resample_disjoint,
+        minimum_node_per_graph=min_node)
+
+    # Transform the whole dataset
+    dataset = transform_before_split(dataset)
+
+    # Split dataset
+    time3 = time.time()
+    # Use custom data splits
+
+    datasets = dataset.split(transductive=cfg.dataset.transductive,
+                                split_ratio=cfg.dataset.split,
+                                shuffle=False)
+    # We only change the training negative sampling ratio
+    for i in range(1, len(datasets)):
+        dataset.edge_negative_sampling_ratio = 1
+
+    # Transform each split dataset
+    time4 = time.time()
+    datasets = transform_after_split(datasets)
+    set_dataset_info(datasets)
+
+    time5 = time.time()
+    logging.info('Load: {:.4}s, Before split: {:.4}s, '
+                 'Split: {:.4}s, After split: {:.4}s'.format(
+                     time2 - time1, time3 - time2, time4 - time3,
+                     time5 - time4))
+
+    return datasets
+
+
 
 def create_loader(datasets):
     loader_train = DataLoader(datasets[0],
