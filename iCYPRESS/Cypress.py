@@ -21,6 +21,8 @@ from iCYPRESS.CytokinesDataSet import CytokinesDataSet
 from iCYPRESS.Visualization import Visualize
 from graphgym.models.layer import GeneralMultiLayer, Linear, GeneralConv
 from graphgym.models.gnn import GNNStackStage
+import numpy as np
+
 
 class Cypress:
     def __init__(self, patients = None, eset = None, blood_only=True, active_cyto_list = ['CCL1'], batch_size = 80, 
@@ -196,12 +198,19 @@ class Cypress:
             parts = line.split(",")
             new_gene = parts[1]
 
+
             if (new_gene not in gene_set):
                 continue
+            # get all the gene expression numbers, and then normalize them
+            gene_nums = parts[2:]
+            gene_nums = [float(gene_num) for gene_num in gene_nums]
+            gene_nums = self.normalize_vector(gene_nums)
+
+
             
             patient_gene_data_dict = dict() # maps the patients code to their gene expression data of this one specific gene
             for index, patient in enumerate(patients):
-                patient_gene_data_dict[patient] = float(parts[index + 2])
+                patient_gene_data_dict[patient] = gene_nums[index]
 
             gene_to_patient[new_gene] = patient_gene_data_dict
             
@@ -221,6 +230,12 @@ class Cypress:
                 active_tissue_gene_dict[tissue] = gene_array
         return (gene_to_patient, active_tissue_gene_dict)
 
+    def normalize_vector(self, vector):
+        min_val = np.min(vector)
+        max_val = np.max(vector)
+        normalized_vector = (vector - min_val) / (max_val - min_val)
+        return normalized_vector    
+    
     def process_patients(self, patients):
         patient_file = open(patients, 'r')
         patient_dict = dict()
