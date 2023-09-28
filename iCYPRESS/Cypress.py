@@ -38,7 +38,7 @@ class Cypress:
         # get current config file
         current_dir = os.path.dirname(os.path.abspath(__file__))
         curr_cfg_file = os.path.join(current_dir, "configs", "example_custom.yaml")
-        self.write_lines_to_file(curr_cfg_file, "configs\\example_custom.yaml")
+        self.write_lines_to_file(curr_cfg_file, os.path.join( "configs", "example_custom.yaml"))
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.eset = eset
@@ -77,7 +77,7 @@ class Cypress:
         # get current config file
         current_dir = os.path.dirname(os.path.abspath(__file__))
         curr_cfg_file = os.path.join(current_dir, "configs", "example_custom.yaml")
-        self.write_lines_to_file(curr_cfg_file, "configs\\example_custom.yaml")
+        self.write_lines_to_file(curr_cfg_file, os.path.join("configs", "example_custom.yaml"))
 
     def create_cyto_database(self, cyto, eset, cyto_tissue_dict, active_tissue_gene_dict, patient_list, 
                              patient_dict, gene_to_patient, cyto_adjacency_dict):
@@ -142,22 +142,22 @@ class Cypress:
             intAdjacency.append(newEdge)
 
         try:
-            os.mkdir("datasets\\")
+            os.mkdir(os.path.join("datasets"))
         except OSError:
             pass
     
         try:
-            os.mkdir("datasets\\" + graphName)
+            os.mkdir(os.path.join("datasets", graphName))
         except OSError:
             pass
 
         try:
-            os.mkdir("datasets\\" + graphName + "\\raw")
+            os.mkdir(os.path.join("datasets", graphName ,"raw"))
         except OSError:
             pass
 
         try:
-            os.mkdir("datasets\\" + graphName + "\\processed")
+            os.mkdir(os.path.join("datasets", graphName, "processed"))
         except OSError:
             pass
             
@@ -166,7 +166,7 @@ class Cypress:
                                         nodeNames = nodeIntMap, divisions = gene_count)
         
 
-        torch.save(full_dataset, "datasets/" + graphName + "\\raw\\" + graphName + ".pt")
+        torch.save(full_dataset, (os.path.join("datasets", graphName, "raw",  graphName + ".pt")))
 
 
 
@@ -324,7 +324,7 @@ class Cypress:
             os.makedirs(os.path.abspath("configs"))
 
         # using with statement
-        with open('configs\\' + name + ".yaml", 'w') as file:
+        with open(os.path.join('configs', name + ".yaml"), 'w') as file:
             file.write('out_dir: results\n')
             file.write('dataset:\n')
             file.write(' format: PyG\n')
@@ -419,7 +419,7 @@ class Cypress:
             # to fix this, copy create_dataset, only with formed graphs already created.
 
             if (self.custom):
-                dataset_raw = custom_dataset(root="datasets\\" + name, name=name, url="null")#torch.load("datasets\\" + name + "\\raw\\" + name + ".pt")
+                dataset_raw = custom_dataset(root=os.path.join("dataset",  name), name=name, url="null")
                 graphs = GraphDataset.pyg_to_graphs(dataset_raw)
                 datasets = create_local_dataset(graphs)
             else:
