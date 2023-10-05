@@ -139,11 +139,15 @@ module load git
 export ALLOC=st-allocation-code
 mkdir /arc/project/$ALLOC/$USER/
 cd /arc/project/$ALLOC/$USER/
-git clone https://github.com/CompBio-Lab/geomx2rna.git
-cd geomx2rna/
 
 mkdir /scratch/$ALLOC/$USER
 cd /scratch/$ALLOC/$USER
-git clone https://github.com/CompBio-Lab/geomx2rna.git
-cd geomx2rna/
+mkdir cyp
+cd cyp/
 ```
+* $ALLOC: Sockeye allocation code
+* $USER: UBC Campus wide login (should be already set)
+  
+Then, follow all instructions above to create the necessary conda environment. Run the code by typing "python $FILENAME.py" into the sockey console.
+* $FILENAME: Name of the file you copied the above code into. Ex: main.
+
