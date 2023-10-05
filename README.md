@@ -129,3 +129,21 @@ from iCYPRESS.CytokinesDataSet import CytokinesDataSet
 cyto_list = Cypress.Cypress.get_cyto_list()
 cyp = Cypress.Cypress(patients = "patients.csv", eset="GSE40240_eset.csv", max_epoch = 500)
 ```
+
+## Quick start options
+
+### repo setup on HPC (UBC ARC Sockeye)
+* clone repo to project and scratch folders
+```
+module load git
+export ALLOC=st-allocation-code
+mkdir /arc/project/$ALLOC/$USER/
+cd /arc/project/$ALLOC/$USER/
+git clone https://github.com/CompBio-Lab/geomx2rna.git
+cd geomx2rna/
+
+mkdir /scratch/$ALLOC/$USER
+cd /scratch/$ALLOC/$USER
+git clone https://github.com/CompBio-Lab/geomx2rna.git
+cd geomx2rna/
+```
