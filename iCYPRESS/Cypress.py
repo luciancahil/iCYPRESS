@@ -263,6 +263,8 @@ class Cypress:
             cyto_name = filename[:-10]
             cyto_list.append(cyto_name) # drop the _graph.csv
             graph_file_path = os.path.join(graph_folder_path, filename)
+            if (filename == '__pycache__'):
+                continue
             graphAdjacency = []
             tissue_set = set()
 
@@ -419,7 +421,7 @@ class Cypress:
             # to fix this, copy create_dataset, only with formed graphs already created.
 
             if (self.custom):
-                dataset_raw = custom_dataset(root=os.path.join("dataset",  name), name=name, url="null")
+                dataset_raw = custom_dataset(root=os.path.join("datasets",  name), name=name, url="null")
                 graphs = GraphDataset.pyg_to_graphs(dataset_raw)
                 datasets = create_local_dataset(graphs)
             else:

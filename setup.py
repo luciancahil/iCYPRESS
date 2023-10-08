@@ -7,7 +7,7 @@ setuptools.setup(
     name="iCypress",
     version="0.11",
     author="royhe",
-    package_data={'iCYPRESS': ['configs/example_custom.yaml', 'Graphs/*.csv', 'Modified Graphs/*.csv']},
+    package_data={'iCYPRESS': ['*.csv']},
     author_email="royhe62@yahoo.ca",
     description="iCYPRESS: identifying CYtokine PREdictors of diSeaSe. A library that analyzes cytokines using Graph Neural Networks",
     long_description=long_description,
