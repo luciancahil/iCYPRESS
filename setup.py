@@ -5,9 +5,9 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="iCypress",
-    version="0.11",
+    version="0.13",
     author="royhe",
-    package_data={'iCYPRESS': ['*.csv']},
+    package_data={'iCYPRESS': ['GenesToTissues.csv','configs/example_custom.yaml', 'Graphs/*.csv', 'Modified Graphs/*.csv']},
     author_email="royhe62@yahoo.ca",
     description="iCYPRESS: identifying CYtokine PREdictors of diSeaSe. A library that analyzes cytokines using Graph Neural Networks",
     long_description=long_description,

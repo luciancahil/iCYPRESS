@@ -76,6 +76,7 @@ graphgym/utils/plot.py
 graphgym/utils/tools.py
 iCYPRESS/Cypress.py
 iCYPRESS/CytokinesDataSet.py
+iCYPRESS/GenesToTissues.csv
 iCYPRESS/Visualization.py
 iCYPRESS/__init__.py
 iCYPRESS/agg_batch.py
