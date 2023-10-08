@@ -82,6 +82,8 @@ iCYPRESS/agg_batch.py
 iCYPRESS/configs_gen.py
 iCYPRESS/main.py
 iCYPRESS/main_pyg.py
+iCYPRESS/Graphs/__init__.py
+iCYPRESS/Modified Graphs/__init__.py
 iCYPRESS/configs/__init__.py
 iCYPRESS/configs/example_custom.yaml
 iCYPRESS/configs/IDGNN/__init__.py
