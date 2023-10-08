@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: iCypress
-Version: 0.10
+Version: 0.11
 Summary: iCYPRESS: identifying CYtokine PREdictors of diSeaSe. A library that analyzes cytokines using Graph Neural Networks
 Home-page: https://github.com/luciancahil/iCYPRESS
 Download-URL: https://github.com/luciancahil/iCYPRESS/archive/refs/tags/v_01.tar.gz
@@ -161,3 +161,25 @@ from iCYPRESS.CytokinesDataSet import CytokinesDataSet
 cyto_list = Cypress.Cypress.get_cyto_list()
 cyp = Cypress.Cypress(patients = "patients.csv", eset="GSE40240_eset.csv", max_epoch = 500)
 ```
+
+## Quick start options
+
+### repo setup on HPC (UBC ARC Sockeye)
+* clone repo to project and scratch folders
+```
+module load git
+export ALLOC=st-allocation-code
+mkdir /arc/project/$ALLOC/$USER/
+cd /arc/project/$ALLOC/$USER/
+
+mkdir /scratch/$ALLOC/$USER
+cd /scratch/$ALLOC/$USER
+mkdir cyp
+cd cyp/
+```
+* $ALLOC: Sockeye allocation code
+* $USER: UBC Campus wide login (should be already set)
+  
+Then, follow all instructions above to create the necessary conda environment. Run the code by typing "python $FILENAME.py" into the sockey console.
+* $FILENAME: Name of the file you copied the above code into. Ex: main.
+
